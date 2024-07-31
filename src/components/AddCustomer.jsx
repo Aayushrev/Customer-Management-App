@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCustomerContext } from '../context/CustomerContext';
 import { useNavigate } from 'react-router-dom';
+import './AddCustomer.css';
 
 const AddCustomer = () => {
   const [name, setName] = useState('');

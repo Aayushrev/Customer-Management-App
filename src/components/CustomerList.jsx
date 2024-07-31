@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCustomerContext } from '../context/CustomerContext';
+import './CustomerList.css';  
 
 const CustomerList = () => {
   const { customers } = useCustomerContext();

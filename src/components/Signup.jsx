@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import './Signup.css';  // Import the CSS file for Signup
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const { login } = useAuthContext();
+  const { signup } = useAuthContext();
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -36,7 +37,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      if (login(email, password)) {
+      if (signup(email, password)) {
         navigate('/login');
       } else {
         alert('Signup failed');
@@ -45,28 +46,30 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Signup</h2>
-      <label>Email:</label>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      {emailError && <p className="error">{emailError}</p>}
-      
-      <label>Password:</label>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      {passwordError && <p className="error">{passwordError}</p>}
-      
-      <button type="submit">Signup</button>
-    </form>
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form">
+        <h2>Signup</h2>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        {emailError && <p className="error">{emailError}</p>}
+        
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {passwordError && <p className="error">{passwordError}</p>}
+        
+        <button type="submit">Signup</button>
+      </form>
+    </div>
   );
 };
 
