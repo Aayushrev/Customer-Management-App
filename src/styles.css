@@ -67,3 +67,9 @@ table th {
   background-color: #333;
   color: white;
 }
+
+.error {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 0.25em;
+}
