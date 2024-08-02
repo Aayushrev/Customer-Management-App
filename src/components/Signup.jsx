@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './Signup.css';  // Import the CSS file for Signup
 
 const Signup = () => {
@@ -38,9 +39,10 @@ const Signup = () => {
 
     if (validateForm()) {
       if (signup(email, password)) {
+        toast.success('Signup successful! Please log in.');
         navigate('/login');
       } else {
-        alert('Signup failed');
+        toast.error('Signup failed. Please try again.');
       }
     }
   };
