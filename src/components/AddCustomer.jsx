@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCustomerContext } from '../context/CustomerContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './AddCustomer.css';
 
 const AddCustomer = () => {
@@ -59,51 +60,54 @@ const AddCustomer = () => {
     if (validateForm()) {
       const customer = { name, lastName, phone, address };
       addCustomer(customer);
+      toast.success('Customer added successfully!');
       navigate('/customers');  // Redirect to customer list
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add Customer</h2>
-      <label>Name:</label>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      {nameError && <p className="error">{nameError}</p>}
-      
-      <label>Last Name:</label>
-      <input
-        type="text"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        required
-      />
-      {lastNameError && <p className="error">{lastNameError}</p>}
-      
-      <label>Phone:</label>
-      <input
-        type="text"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        required
-      />
-      {phoneError && <p className="error">{phoneError}</p>}
-      
-      <label>Address:</label>
-      <input
-        type="text"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        required
-      />
-      {addressError && <p className="error">{addressError}</p>}
-      
-      <button type="submit">Add Customer</button>
-    </form>
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form">
+        <h2>Add Customer</h2>
+        <label>Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        {nameError && <p className="error">{nameError}</p>}
+        
+        <label>Last Name:</label>
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+        {lastNameError && <p className="error">{lastNameError}</p>}
+        
+        <label>Phone:</label>
+        <input
+          type="text"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          required
+        />
+        {phoneError && <p className="error">{phoneError}</p>}
+        
+        <label>Address:</label>
+        <input
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          required
+        />
+        {addressError && <p className="error">{addressError}</p>}
+        
+        <button type="submit">Add Customer</button>
+      </form>
+    </div>
   );
 };
 
